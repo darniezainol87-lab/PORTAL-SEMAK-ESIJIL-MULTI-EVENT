@@ -1,121 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="ms">
 <head>
-
-<meta charset="utf-8">
-
-<meta name="viewport"
-content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>PORTAL SEMAK E-SIJIL</title>
 
 <style>
 
 body{
-
 margin:0;
-
-font-family:Arial;
-
-background:
-url("background.png")
-center/cover;
-
+font-family:Arial,sans-serif;
+background:url("background.png") center/cover;
 min-height:100vh;
-
 display:flex;
-
 justify-content:center;
-
 align-items:center;
-
 }
 
 .box{
-
 width:90%;
-
 max-width:500px;
-
 padding:30px;
-
-background:
-rgba(0,0,0,.75);
-
+background:rgba(0,0,0,.75);
 border-radius:20px;
-
+color:#fff;
 text-align:center;
-
-color:white;
-
 }
 
 .logo{
-
 width:150px;
-
 }
 
 input{
-
 width:100%;
-
 padding:16px;
-
-border:none;
-
-border-radius:10px;
-
 margin:15px 0;
-
+border:none;
+border-radius:10px;
 }
 
 button{
-
 width:100%;
-
-padding:15px;
-
+padding:16px;
 border:none;
-
-cursor:pointer;
-
 border-radius:10px;
-
+cursor:pointer;
 }
 
 .card{
-
 margin-top:20px;
-
 padding:20px;
-
 background:#111;
-
 border-radius:15px;
-
 }
 
 a{
-
 display:inline-block;
-
-padding:12px 20px;
-
 margin-top:15px;
-
+padding:12px 20px;
 background:#00bfff;
-
-color:white;
-
+color:#fff;
 text-decoration:none;
-
 border-radius:10px;
-
 }
 
 </style>
-
 </head>
 
 <body>
@@ -126,26 +76,18 @@ border-radius:10px;
 
 <div class="box">
 
-<img
-src="logo.png"
-class="logo">
+<img src="logo.png" class="logo">
 
-<h2>
-PORTAL SEMAK E-SIJIL
-</h2>
+<h2>PORTAL SEMAK E-SIJIL</h2>
 
-<p>
-MULTI EVENT VIP SYSTEM 2026
-</p>
+<p>MULTI EVENT SYSTEM</p>
 
 <input
 id="ic"
 placeholder="MASUKKAN IC">
 
 <button onclick="semak()">
-
 SEMAK SIJIL
-
 </button>
 
 <div id="result"></div>
@@ -154,29 +96,24 @@ SEMAK SIJIL
 
 <script>
 
-const API=
+const API =
 "https://script.google.com/macros/s/AKfycbyPPzQJ3RJFeM_v-1pbs3LP2oZrv_CcKsnrCYGZo6A8IIJG8F90EOF71xsIXQDFi0oU5w/exec";
 
 async function semak(){
 
-const result=
-document.getElementById(
-"result"
-);
+const result =
+document.getElementById("result");
 
-const ic=
-document.getElementById(
-"ic"
-).value.trim();
+const ic =
+document.getElementById("ic")
+.value
+.trim();
 
 if(!ic){
 
-result.innerHTML=
-`
+result.innerHTML=`
 <div class="card">
-
-Masukkan IC
-
+Masukkan No IC
 </div>
 `;
 
@@ -184,69 +121,66 @@ return;
 
 }
 
-try{
-
-result.innerHTML=
-`
+result.innerHTML=`
 <div class="card">
-
-Mencari...
-
+Mencari sijil...
 </div>
 `;
 
-const event=
+try{
+
+const event =
 new URLSearchParams(
-location.search
+window.location.search
 ).get("event")
 ||
 "lextai";
 
-const url=
-API+
-"?event="+
-event+
-"&ic="+
-ic;
+const url =
+`${API}?event=${encodeURIComponent(event)}&ic=${encodeURIComponent(ic)}`;
 
-const res=
+const response =
 await fetch(
-url
+url,
+{
+redirect:"follow"
+}
 );
 
-const data=
-await res.json();
+const raw =
+await response.text();
+
+const data =
+JSON.parse(raw);
 
 if(data.success){
 
-document
-.getElementById(
+const audio =
+document.getElementById(
 "successSound"
-)
-.play()
-.catch(()=>{});
+);
 
-result.innerHTML=
-`
+if(audio){
+
+audio.play().catch(()=>{});
+
+}
+
+result.innerHTML=`
 
 <div class="card">
 
 <h3>
-
 ${data.nama}
-
 </h3>
 
 <p>
-
 ${data.program}
-
 </p>
 
 <a
-target="_blank"
 href="${data.pdf}"
->
+target="_blank">
 
 MUAT TURUN SIJIL
 
@@ -258,8 +192,7 @@ MUAT TURUN SIJIL
 
 }else{
 
-result.innerHTML=
-`
+result.innerHTML=`
 
 <div class="card">
 
@@ -275,12 +208,11 @@ ${data.message}
 
 console.log(err);
 
-result.innerHTML=
-`
+result.innerHTML=`
 
 <div class="card">
 
-Sambungan API gagal
+SAMBUNGAN API GAGAL
 
 </div>
 
@@ -290,20 +222,22 @@ Sambungan API gagal
 
 }
 
-const auto=
+const auto =
 new URLSearchParams(
-location.search
+window.location.search
 ).get("ic");
 
 if(auto){
 
 document
-.getElementById(
-"ic"
-).value=
+.getElementById("ic")
+.value=
 auto;
 
-semak();
+setTimeout(
+semak,
+500
+);
 
 }
 
