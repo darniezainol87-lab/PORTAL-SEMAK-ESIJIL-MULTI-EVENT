@@ -3,11 +3,11 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>PORTAL SEMAK E-SIJIL VIP</title>
+<title>PORTAL SEMAK E-SIJIL MULTI EVENT</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -19,219 +19,161 @@ box-sizing:border-box;
 
 body{
 
-font-family:'Orbitron',sans-serif;
-
-background:
-linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.8)),
-url('background.png');
-
-background-size:cover;
-background-position:center;
-background-repeat:no-repeat;
+font-family:Orbitron;
 
 min-height:100vh;
 
 display:flex;
+
 justify-content:center;
+
 align-items:center;
 
-overflow:hidden;
+padding:20px;
+
+background:
+linear-gradient(
+rgba(0,0,0,.72),
+rgba(0,0,0,.82)
+),
+
+url("background.png");
+
+background-size:cover;
+
+background-position:center;
+
+background-repeat:no-repeat;
 
 color:white;
 
 }
 
-/* ANIMATED GLOW */
-
-body::before{
-
-content:'';
-
-position:absolute;
+.box{
 
 width:100%;
-height:100%;
 
-background:
-radial-gradient(circle at top left,#00f0ff22,transparent 40%),
-radial-gradient(circle at bottom right,#ff00ff22,transparent 40%);
+max-width:560px;
 
-animation:glow 6s infinite alternate;
+padding:36px;
 
-z-index:0;
+border-radius:28px;
 
-}
+background:rgba(15,20,35,.72);
 
-@keyframes glow{
+backdrop-filter:blur(18px);
 
-0%{
-transform:scale(1);
-}
-
-100%{
-transform:scale(1.1);
-}
-
-}
-
-.container{
-
-position:relative;
-z-index:2;
-
-width:90%;
-max-width:500px;
-
-padding:35px;
-
-border-radius:25px;
-
-backdrop-filter:blur(15px);
-
-background:rgba(255,255,255,0.06);
-
-border:1px solid rgba(255,255,255,0.15);
+border:1px solid rgba(255,255,255,.12);
 
 box-shadow:
-0 0 20px #00e5ff55,
-0 0 50px #ff00ff33;
+0 0 35px rgba(0,229,255,.25);
 
 text-align:center;
 
 }
 
-/* LOGO */
-
 .logo img{
 
 width:160px;
+
 max-width:100%;
 
-margin-bottom:20px;
+margin-bottom:15px;
 
 filter:
-drop-shadow(0 0 15px #00e5ff)
-drop-shadow(0 0 30px #ff00ff);
-
-animation:float 3s ease-in-out infinite;
+drop-shadow(0 0 16px #00e5ff);
 
 }
 
-@keyframes float{
+h1{
 
-0%{
-transform:translateY(0px);
-}
-
-50%{
-transform:translateY(-8px);
-}
-
-100%{
-transform:translateY(0px);
-}
-
-}
-
-.title{
-
-font-size:24px;
-font-weight:700;
-
-margin-bottom:10px;
+font-size:28px;
 
 color:#00e5ff;
 
-text-shadow:0 0 10px #00e5ff;
+margin-bottom:8px;
 
 }
 
-.subtitle{
+.sub{
+
+color:#bbb;
 
 font-size:13px;
-color:#ccc;
 
-margin-bottom:30px;
+margin-bottom:28px;
 
 }
-
-/* INPUT */
 
 input{
 
 width:100%;
 
-padding:16px;
+padding:18px;
 
 border:none;
+
 outline:none;
 
-border-radius:15px;
+border-radius:16px;
 
-background:#11182c;
+background:#111827;
 
 color:white;
 
 font-size:16px;
 
-margin-bottom:20px;
+margin-bottom:16px;
 
 text-align:center;
 
-box-shadow:0 0 15px #00e5ff33;
-
 }
-
-/* BUTTON */
 
 button{
 
 width:100%;
 
-padding:16px;
+padding:18px;
 
 border:none;
 
-border-radius:15px;
-
-background:linear-gradient(90deg,#00e5ff,#ff00ff);
-
-color:white;
-
-font-size:16px;
-font-weight:bold;
+border-radius:16px;
 
 cursor:pointer;
 
-transition:0.3s;
+font-size:16px;
+
+font-weight:700;
+
+color:white;
+
+background:
+
+linear-gradient(
+90deg,
+#00e5ff,
+#ff00ff
+);
 
 }
 
 button:hover{
 
-transform:scale(1.03);
-
-box-shadow:
-0 0 20px #00e5ff88,
-0 0 40px #ff00ff55;
+transform:translateY(-1px);
 
 }
 
-/* RESULT CARD */
-
 .card{
 
-margin-top:25px;
+margin-top:24px;
 
-padding:25px;
+padding:22px;
 
 border-radius:20px;
 
-background:#0e1529;
+background:#10192b;
 
-border:1px solid #00e5ff33;
-
-animation:fade 0.4s ease;
+animation:fade .3s;
 
 }
 
@@ -239,7 +181,7 @@ animation:fade 0.4s ease;
 
 color:#00e5ff;
 
-margin-bottom:15px;
+margin-bottom:12px;
 
 }
 
@@ -251,82 +193,66 @@ font-size:14px;
 
 color:#ddd;
 
+word-break:break-word;
+
 }
 
-.card a{
+.download{
 
 display:inline-block;
 
-margin-top:15px;
+margin-top:14px;
 
-padding:12px 25px;
+padding:14px 26px;
 
-border-radius:12px;
+border-radius:14px;
 
 text-decoration:none;
 
-background:linear-gradient(90deg,#00e5ff,#ff00ff);
+background:
+
+linear-gradient(
+90deg,
+#00e5ff,
+#ff00ff
+);
 
 color:white;
 
-font-weight:bold;
-
-transition:0.3s;
-
 }
-
-.card a:hover{
-
-transform:scale(1.05);
-
-}
-
-/* LOADING */
 
 .loading{
 
-margin-top:20px;
-
-font-size:15px;
-
-color:#00e5ff;
-
-animation:blink 1s infinite;
+padding:22px;
 
 }
-
-@keyframes blink{
-
-50%{
-opacity:0.5;
-}
-
-}
-
-/* FOOTER */
 
 .footer{
 
-margin-top:25px;
+margin-top:20px;
 
-font-size:12px;
+font-size:11px;
 
 color:#888;
 
 }
 
-/* FADE */
-
 @keyframes fade{
 
 from{
+
 opacity:0;
+
 transform:translateY(10px);
+
 }
 
 to{
+
 opacity:1;
-transform:translateY(0);
+
+transform:none;
+
 }
 
 }
@@ -337,33 +263,30 @@ transform:translateY(0);
 
 <body>
 
-<!-- AUDIO -->
-
 <audio id="successSound">
 <source src="success.mp3" type="audio/mpeg">
 </audio>
 
-<!-- MAIN -->
-
-<div class="container">
+<div class="box">
 
 <div class="logo">
-<img src="logo.png" alt="Logo">
+
+<img src="logo.png">
+
 </div>
 
-<div class="title">
+<h1>
 PORTAL SEMAK E-SIJIL
-</div>
+</h1>
 
-<div class="subtitle">
-MULTI EVENT VIP SYSTEM 2026
+<div class="sub">
+MULTI EVENT SYSTEM
 </div>
 
 <input
-type="text"
 id="ic"
 placeholder="MASUKKAN NO KAD PENGENALAN"
-/>
+>
 
 <button onclick="semak()">
 SEMAK SIJIL
@@ -372,79 +295,120 @@ SEMAK SIJIL
 <div id="result"></div>
 
 <div class="footer">
-POWERED BY VIP DIGITAL CERTIFICATE SYSTEM
+
+POWERED BY DIGITAL EVENT SYSTEM
+
 </div>
 
 </div>
 
 <script>
 
-/* API */
-
-const API = "https://script.google.com/macros/s/AKfycbyPPzQJ3RJFeM_v-1pbs3LP2oZrv_CcKsnrCYGZo6A8IIJG8F90EOF71xsIXQDFi0oU5w/exec";
-
-/* SEMAK FUNCTION */
+const API =
+"https://script.google.com/macros/s/AKfycbyPPzQJ3RJFeM_v-1pbs3LP2oZrv_CcKsnrCYGZo6A8IIJG8F90EOF71xsIXQDFi0oU5w/exec";
 
 async function semak(){
 
-const ic = document.getElementById("ic").value.trim();
+const ic =
+document
+.getElementById("ic")
+.value
+.trim();
 
-const result = document.getElementById("result");
+const result =
+document
+.getElementById("result");
 
 if(!ic){
 
-result.innerHTML = `
+result.innerHTML=`
+
 <div class="card">
-<h2>SILA MASUKKAN IC</h2>
+
+<h2>
+MASUKKAN IC
+</h2>
+
 </div>
+
 `;
 
 return;
 
 }
 
-result.innerHTML = `
-<div class="loading">
+result.innerHTML=`
+
+<div class="card loading">
+
 MENCARI SIJIL...
+
 </div>
+
 `;
 
 try{
 
-const urlParams = new URLSearchParams(window.location.search);
-
-const event = urlParams.get("event") || "lextai";
-
-const res = await fetch(
-API + "?event=" + event + "&ic=" + encodeURIComponent(ic)
+const params =
+new URLSearchParams(
+window.location.search
 );
 
-const data = await res.json();
+const event =
+params.get("event")
+||
+"lextai";
+
+const response =
+await fetch(
+API+
+"?event="+
+encodeURIComponent(event)+
+"&ic="+
+encodeURIComponent(ic)
+);
+
+const data =
+await response.json();
 
 if(data.success){
 
-/* PLAY SOUND */
+const audio =
+document
+.getElementById(
+"successSound"
+);
 
-document.getElementById("successSound").play();
+if(audio){
 
-result.innerHTML = `
+audio
+.play()
+.catch(()=>{});
+
+}
+
+result.innerHTML=`
 
 <div class="card">
 
-<h2>${data.nama}</h2>
+<h2>
+${data.nama||"-"}
+</h2>
 
-<p>${data.program}</p>
+<p>
 
-<p><b>EVENT:</b> ${data.event}</p>
+${data.program||"-"}
 
-<p><b>STATUS:</b> ${data.status}</p>
+</p>
 
-<p><b>EMAIL:</b> ${data.email}</p>
+<a
+class="download"
+href="${data.pdf}"
+target="_blank"
+>
 
-<p><b>NO TEL:</b> ${data.phone}</p>
-
-<a href="${data.pdf}" target="_blank">
 MUAT TURUN SIJIL
+
 </a>
 
 </div>
@@ -453,14 +417,38 @@ MUAT TURUN SIJIL
 
 }else{
 
-result.innerHTML = `
+result.innerHTML=`
 
 <div class="card">
 
-<h2>SIJIL TIDAK DIJUMPAI</h2>
+<h2>
+
+SIJIL TIDAK DIJUMPAI
+
+</h2>
+
+</div>
+
+`;
+
+}
+
+}catch(e){
+
+result.innerHTML=`
+
+<div class="card">
+
+<h2>
+
+RALAT SISTEM
+
+</h2>
 
 <p>
-Sila semak nombor kad pengenalan anda
+
+Semakan gagal.
+
 </p>
 
 </div>
@@ -469,41 +457,27 @@ Sila semak nombor kad pengenalan anda
 
 }
 
-}catch(error){
-
-result.innerHTML = `
-
-<div class="card">
-
-<h2>RALAT SISTEM</h2>
-
-<p>
-Sila cuba sebentar lagi
-</p>
-
-</div>
-
-`;
-
 }
 
-}
+const url =
+new URLSearchParams(
+window.location.search
+);
 
-/* AUTO QR DETECT */
+const autoIC =
+url.get("ic");
 
-const urlParams = new URLSearchParams(window.location.search);
+if(autoIC){
 
-const icParam = urlParams.get("ic");
+document
+.getElementById("ic")
+.value=
+autoIC;
 
-if(icParam){
-
-document.getElementById("ic").value = icParam;
-
-setTimeout(()=>{
-
-semak();
-
-},500);
+setTimeout(
+semak,
+500
+);
 
 }
 
