@@ -1,185 +1,377 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>PORTAL SEMAK E-SIJIL</title>
+<title>PORTAL SEMAK E-SIJIL MULTI EVENT</title>
 
 <style>
 
-body{
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
 font-family:Arial,sans-serif;
-background:url("background.png") center/cover;
+
+background:
+linear-gradient(
+rgba(0,0,0,.55),
+rgba(0,0,0,.75)
+),
+
+url("background.png");
+
+background-size:cover;
+
+background-position:center;
+
 min-height:100vh;
+
 display:flex;
+
 justify-content:center;
+
 align-items:center;
+
+padding:20px;
+
 }
 
 .box{
-width:90%;
-max-width:500px;
-padding:30px;
-background:rgba(0,0,0,.75);
-border-radius:20px;
-color:#fff;
+
+width:100%;
+
+max-width:520px;
+
+padding:35px;
+
+background:
+rgba(10,15,30,.80);
+
+border-radius:25px;
+
 text-align:center;
+
+color:white;
+
+backdrop-filter:blur(15px);
+
 }
 
 .logo{
+
 width:150px;
+
+margin-bottom:15px;
+
+}
+
+h1{
+
+font-size:28px;
+
+margin-bottom:8px;
+
+}
+
+.sub{
+
+color:#c9c9c9;
+
+margin-bottom:24px;
+
 }
 
 input{
+
 width:100%;
-padding:16px;
-margin:15px 0;
+
+padding:18px;
+
 border:none;
-border-radius:10px;
+
+border-radius:12px;
+
+margin-bottom:16px;
+
+font-size:16px;
+
+text-align:center;
+
 }
 
 button{
+
 width:100%;
-padding:16px;
+
+padding:18px;
+
 border:none;
-border-radius:10px;
+
+border-radius:12px;
+
 cursor:pointer;
+
+font-size:16px;
+
+font-weight:bold;
+
+background:
+linear-gradient(
+90deg,
+#00c3ff,
+#7b61ff
+);
+
+color:white;
+
 }
 
 .card{
-margin-top:20px;
-padding:20px;
-background:#111;
-border-radius:15px;
+
+margin-top:22px;
+
+padding:22px;
+
+border-radius:16px;
+
+background:#111827;
+
 }
 
-a{
+.card h2{
+
+margin-bottom:10px;
+
+}
+
+.card p{
+
+margin-bottom:10px;
+
+word-break:break-word;
+
+}
+
+.download{
+
 display:inline-block;
-margin-top:15px;
-padding:12px 20px;
-background:#00bfff;
-color:#fff;
+
+margin-top:10px;
+
+padding:14px 24px;
+
+background:
+linear-gradient(
+90deg,
+#00c3ff,
+#7b61ff
+);
+
+color:white;
+
 text-decoration:none;
+
 border-radius:10px;
+
+}
+
+.footer{
+
+margin-top:18px;
+
+font-size:11px;
+
+color:#aaa;
+
 }
 
 </style>
+
 </head>
 
 <body>
 
 <audio id="successSound">
-<source src="success.mp3">
+<source src="success.mp3" type="audio/mpeg">
 </audio>
 
 <div class="box">
 
-<img src="logo.png" class="logo">
+<img
+src="logo.png"
+class="logo"
+>
 
-<h2>PORTAL SEMAK E-SIJIL</h2>
+<h1>
 
-<p>MULTI EVENT SYSTEM</p>
+PORTAL SEMAK E-SIJIL
+
+</h1>
+
+<div class="sub">
+
+MULTI EVENT SYSTEM
+
+</div>
 
 <input
 id="ic"
-placeholder="MASUKKAN IC">
+placeholder="MASUKKAN NO KAD PENGENALAN"
+>
 
 <button onclick="semak()">
+
 SEMAK SIJIL
+
 </button>
 
 <div id="result"></div>
+
+<div class="footer">
+
+POWERED BY DIGITAL EVENT SYSTEM
+
+</div>
 
 </div>
 
 <script>
 
-const API = "https://script.google.com/macros/s/AKfycbyPPzQJ3RJFeM_v-1pbs3LP2oZrv_CcKsnrCYGZo6A8IIJG8F90EOF71xsIXQDFi0oU5w/exec";
+const API =
+"https://script.google.com/macros/s/AKfycbyPPzQJ3RJFeM_v-1pbs3LP2oZrv_CcKsnrCYGZo6A8IIJG8F90EOF71xsIXQDFi0oU5w/exec";
 
 async function semak(){
 
 const result =
-document.getElementById("result");
+document.getElementById(
+"result"
+);
 
 const ic =
-document.getElementById("ic")
+document
+.getElementById(
+"ic"
+)
 .value
 .trim();
 
 if(!ic){
 
-result.innerHTML=`
+result.innerHTML=
+`
+
 <div class="card">
-Masukkan No IC
+
+Masukkan No Kad Pengenalan
+
 </div>
+
 `;
 
 return;
 
 }
 
-result.innerHTML=`
+result.innerHTML=
+`
+
 <div class="card">
+
 Mencari sijil...
+
 </div>
+
 `;
 
 try{
 
-const event =
+const params =
 new URLSearchParams(
 window.location.search
-).get("event")
+);
+
+const event =
+params.get("event")
 ||
 "lextai";
 
 const url =
-`${API}?event=${encodeURIComponent(event)}&ic=${encodeURIComponent(ic)}`;
+API +
+"?event=" +
+encodeURIComponent(event) +
+"&ic=" +
+encodeURIComponent(ic);
 
-const response =
+const res =
 await fetch(
 url,
 {
+method:"GET",
 redirect:"follow"
 }
 );
 
-const raw =
-await response.text();
+const text =
+await res.text();
 
-const data =
-JSON.parse(raw);
+let data;
+
+try{
+
+data =
+JSON.parse(text);
+
+}catch{
+
+throw new Error(
+"RESPON API TIDAK SAH"
+);
+
+}
 
 if(data.success){
 
-const audio =
+const sound =
 document.getElementById(
 "successSound"
 );
 
-if(audio){
+if(sound){
 
-audio.play().catch(()=>{});
+sound.play()
+.catch(()=>{});
 
 }
 
-result.innerHTML=`
+result.innerHTML=
+`
 
 <div class="card">
 
-<h3>
+<h2>
+
 ${data.nama}
-</h3>
+
+</h2>
 
 <p>
+
 ${data.program}
+
 </p>
 
 <a
+class="download"
 href="${data.pdf}"
-target="_blank">
+target="_blank"
+>
 
 MUAT TURUN SIJIL
 
@@ -191,7 +383,8 @@ MUAT TURUN SIJIL
 
 }else{
 
-result.innerHTML=`
+result.innerHTML=
+`
 
 <div class="card">
 
@@ -207,11 +400,16 @@ ${data.message}
 
 console.log(err);
 
-result.innerHTML=`
+result.innerHTML=
+`
 
 <div class="card">
 
-SAMBUNGAN API GAGAL
+RALAT SISTEM
+
+<br><br>
+
+${err.message}
 
 </div>
 
@@ -224,13 +422,16 @@ SAMBUNGAN API GAGAL
 const auto =
 new URLSearchParams(
 window.location.search
-).get("ic");
+)
+.get("ic");
 
 if(auto){
 
 document
-.getElementById("ic")
-.value=
+.getElementById(
+"ic"
+)
+.value =
 auto;
 
 setTimeout(
